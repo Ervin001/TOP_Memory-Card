@@ -1,6 +1,6 @@
 # React + Vite
 
-TOP project memry-Card:
+TOP project memory-Card:
 
 ---
 
