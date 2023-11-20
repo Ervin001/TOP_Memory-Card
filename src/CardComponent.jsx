@@ -1,17 +1,31 @@
-import Card from './Card';
+import { useState, useEffect } from 'react';
+import './css/card.css';
 
-export default function CardComponent() {
+export default function Card({ name, type, gridArea }) {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(
+          `https://api.dicebear.com/7.x/pixel-art/${type}?seed=${name}`
+        );
+        const imageData = await response.blob();
+        setImage(URL.createObjectURL(imageData));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    //Calls fetchImage
+    fetchImage();
+  }, []);
+
   return (
-    <>
-      <h1>Hello World</h1>
-      <Card type='svg' name='Oreo' />
-      {/* <Card type='svg' name='Gizmo' />
-      <Card type='svg' name='Angel' />
-      <Card type='svg' name='Samantha' />
-      <Card type='svg' name='Lily' />
-      <Card type='svg' name='Baby' />
-      <Card type='svg' name='Sandie' />
-      <Card type='svg' name='Sam' /> */}
-    </>
+    <div className='card card-box' style={{ gridArea }}>
+      <div className='image-container'>
+        <img src={image} alt='Avatar' />
+      </div>
+    </div>
   );
 }

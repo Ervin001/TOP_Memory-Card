@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 62.5%;
+}
+
+body {
+  max-width: 140rem;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1f2023;
+  }
+
+  .score {
+    color: #8d96a9;
+  }
+}
+
+.dark-mode {
+  background-color: black;
+}
+
+/* STYLES for root children */
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container {
+  height: 16rem;
+  outline: 1px solid red;
+}

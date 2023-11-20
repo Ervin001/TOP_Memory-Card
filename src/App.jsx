@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import './App.css';
-import CardComponent from './CardComponent';
+import './css/app.css';
+import CardContainerComponent from './CardContainerComponent';
+import InfoComponent from './InfoComponent';
 
 function App() {
   return (
     <>
-      <CardComponent />
+      <InfoComponent />
+      <CardContainerComponent />
     </>
   );
 }
