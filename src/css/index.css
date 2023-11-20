@@ -15,7 +15,65 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* dark mode */
+/* STYLES for root children */
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+.info-container {
+  height: 16rem;
+}
+
+/* --------------CARD CONTAINER STYLES----------------- */
+
+.card-container {
+}
+
+.grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  grid-column: repeat(3, 1fr);
+  grid-template-areas:
+    'one two three four'
+    'five six seven eight';
+}
+
+/* -------------------CARD STYLES------- */
+.card {
+  background-color: #808a9f;
+  border-radius: 16px;
+  /* width: 25rem; */
+  max-width: 40rem;
+  min-width: 15rem;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.image-container {
+  max-width: 20rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------SCORES------------------- */
+.score {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+
+  color: #1c3144;
+}
+
+/* ---------------------DARK MODE-------------------*/
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #1f2023;
@@ -24,19 +82,4 @@ body {
   .score {
     color: #8d96a9;
   }
-}
-
-.dark-mode {
-  background-color: black;
-}
-
-/* STYLES for root children */
-#root {
-  display: flex;
-  flex-direction: column;
-}
-
-.info-container {
-  height: 16rem;
-  outline: 1px solid red;
 }

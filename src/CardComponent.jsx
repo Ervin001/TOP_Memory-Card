@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import './css/card.css';
 
-export default function Card({ name, type, gridArea }) {
+export default function Card({ name, type, gridArea, onClick }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -22,7 +21,7 @@ export default function Card({ name, type, gridArea }) {
   }, []);
 
   return (
-    <div className='card card-box' style={{ gridArea }}>
+    <div className='card card-box' style={{ gridArea }} onClick={onClick}>
       <div className='image-container'>
         <img src={image} alt='Avatar' />
       </div>

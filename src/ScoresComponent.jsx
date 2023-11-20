@@ -1,4 +1,3 @@
-import './css/scores.css';
 import { useState } from 'react';
 
 export default function ScoresComponent() {

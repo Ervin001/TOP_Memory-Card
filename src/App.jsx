@@ -1,4 +1,3 @@
-import './css/app.css';
 import CardContainerComponent from './CardContainerComponent';
 import InfoComponent from './InfoComponent';
 
