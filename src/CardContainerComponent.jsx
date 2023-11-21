@@ -5,17 +5,17 @@ import { v4 as uuidv4 } from 'uuid';
 // uuidv4();
 
 const initialCardData = [
-  { type: 'svg', name: 'Oreo', gridArea: 'one', id: uuidv4() },
-  { type: 'svg', name: 'Gizmo', gridArea: 'two', id: uuidv4() },
-  { type: 'svg', name: 'Angel', gridArea: 'three', id: uuidv4() },
-  { type: 'svg', name: 'Samantha', gridArea: 'four', id: uuidv4() },
-  { type: 'svg', name: 'Lily', gridArea: 'five', id: uuidv4() },
-  { type: 'svg', name: 'Baby', gridArea: 'six', id: uuidv4() },
-  { type: 'svg', name: 'Sandie', gridArea: 'seven', id: uuidv4() },
-  { type: 'svg', name: 'Sam', gridArea: 'eight', id: uuidv4() },
+  { type: 'svg', name: 'Oreo', id: uuidv4() },
+  { type: 'svg', name: 'Gizmo', id: uuidv4() },
+  { type: 'svg', name: 'Angel', id: uuidv4() },
+  { type: 'svg', name: 'Samantha', id: uuidv4() },
+  { type: 'svg', name: 'Lily', id: uuidv4() },
+  { type: 'svg', name: 'Baby', id: uuidv4() },
+  { type: 'svg', name: 'Sandie', id: uuidv4() },
+  { type: 'svg', name: 'Sam', id: uuidv4() },
 ];
 
-export default function CardContainerComponent() {
+export default function CardContainerComponent({ addPoint }) {
   const [randomCards, setRandomCards] = useState(initialCardData);
 
   // Shuffle function
@@ -39,9 +39,12 @@ export default function CardContainerComponent() {
   };
 
   const handleClick = () => {
+    // Add point
+    addPoint();
+
+    // Shuffle the cards
     const shuffledData = shuffle([...randomCards]);
     setRandomCards(shuffledData);
-    console.log(randomCards);
   };
 
   return (
@@ -52,7 +55,6 @@ export default function CardContainerComponent() {
             key={card.id}
             type={card.type}
             name={card.name}
-            gridArea={card.gridArea}
             onClick={handleClick}
           />
         );

@@ -1,9 +1,9 @@
 import ScoresComponent from './ScoresComponent';
 
-export default function InfoComponent() {
+export default function InfoComponent({ currentScore }) {
   return (
     <div className='container info-container'>
-      <ScoresComponent />
+      <ScoresComponent currentScore={currentScore} />
     </div>
   );
 }
