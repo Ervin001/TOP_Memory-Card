@@ -17,7 +17,12 @@ const initialCardData = [
 
 const imgUrlObj = {};
 
-export default function CardContainerComponent({ addPoint }) {
+export default function CardContainerComponent({
+  addPoint,
+  addBestScore,
+  playing,
+  endGame,
+}) {
   //shuffle at the start of the game
   shuffle(initialCardData);
 
@@ -45,19 +50,27 @@ export default function CardContainerComponent({ addPoint }) {
   }
 
   const handleClick = (e) => {
-    // get only the id
+    // Check if game is playable
     const imgID = e.target.src.split('/').pop();
+    if (playing) {
+      // get only the id
 
-    if (!(imgID in imgUrlObj)) {
-      // Shuffle the cards
-      const shuffledData = shuffle([...randomCards]);
-      setRandomCards(shuffledData);
-      imgUrlObj[imgID] = true;
+      if (!(imgID in imgUrlObj)) {
+        // Shuffle the cards
+        const shuffledData = shuffle([...randomCards]);
+        setRandomCards(shuffledData);
+        imgUrlObj[imgID] = true;
 
-      // Add point
-      addPoint();
+        // Add point
+        addPoint();
+      } else {
+        console.log('Game Over');
+
+        // Add current Score to best score;
+        addBestScore();
+      }
     } else {
-      console.log('Game Over');
+      endGame();
     }
   };
 
