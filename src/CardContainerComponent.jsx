@@ -5,21 +5,27 @@ import { v4 as uuidv4 } from 'uuid';
 // uuidv4();
 
 const initialCardData = [
-  { type: 'svg', name: 'Oreo', id: uuidv4() },
-  { type: 'svg', name: 'Gizmo', id: uuidv4() },
-  { type: 'svg', name: 'Angel', id: uuidv4() },
-  { type: 'svg', name: 'Samantha', id: uuidv4() },
-  { type: 'svg', name: 'Lily', id: uuidv4() },
-  { type: 'svg', name: 'Baby', id: uuidv4() },
-  { type: 'svg', name: 'Sandie', id: uuidv4() },
-  { type: 'svg', name: 'Sam', id: uuidv4() },
+  { type: 'svg', name: 'Oreo', id: uuidv4(), urlID: 1 },
+  { type: 'svg', name: 'Gizmo', id: uuidv4(), urlID: 2 },
+  { type: 'svg', name: 'Angel', id: uuidv4(), urlID: 3 },
+  { type: 'svg', name: 'Samantha', id: uuidv4(), urlID: 4 },
+  { type: 'svg', name: 'Lily', id: uuidv4(), urlID: 5 },
+  { type: 'svg', name: 'Baby', id: uuidv4(), urlID: 6 },
+  { type: 'svg', name: 'Sandie', id: uuidv4(), urlID: 7 },
+  { type: 'svg', name: 'Sam', id: uuidv4(), urlID: 8 },
 ];
 
+const imgUrlObj = {};
+
 export default function CardContainerComponent({ addPoint }) {
+  //shuffle at the start of the game
+  shuffle(initialCardData);
+
   const [randomCards, setRandomCards] = useState(initialCardData);
 
-  // Shuffle function
-  const shuffle = (array) => {
+  // Shuffle function declaration
+  function shuffle(array) {
+    // const shuffle = (array) => {
     let currentIndex = array.length;
     let randomIndex;
 
@@ -36,15 +42,23 @@ export default function CardContainerComponent({ addPoint }) {
       ];
     }
     return array;
-  };
+  }
 
-  const handleClick = () => {
-    // Add point
-    addPoint();
+  const handleClick = (e) => {
+    // get only the id
+    const imgID = e.target.src.split('/').pop();
 
-    // Shuffle the cards
-    const shuffledData = shuffle([...randomCards]);
-    setRandomCards(shuffledData);
+    if (!(imgID in imgUrlObj)) {
+      // Shuffle the cards
+      const shuffledData = shuffle([...randomCards]);
+      setRandomCards(shuffledData);
+      imgUrlObj[imgID] = true;
+
+      // Add point
+      addPoint();
+    } else {
+      console.log('Game Over');
+    }
   };
 
   return (
@@ -55,6 +69,7 @@ export default function CardContainerComponent({ addPoint }) {
             key={card.id}
             type={card.type}
             name={card.name}
+            urlID={card.urlID}
             onClick={handleClick}
           />
         );

@@ -11,10 +11,6 @@ function App() {
     setCurrentScore((prevScore) => prevScore + 1);
   };
 
-  useEffect(() => {
-    console.log(currentScore);
-  }, [currentScore]);
-
   return (
     <>
       <InfoComponent currentScore={currentScore} />

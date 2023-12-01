@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function Card({ name, type, gridArea, onClick }) {
+export default function Card({ name, type, urlID, onClick }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Card({ name, type, gridArea, onClick }) {
   }, []);
 
   return (
-    <div className='card card-box' style={{ gridArea }} onClick={onClick}>
+    <div className='card card-box' data-id={{ urlID }} onClick={onClick}>
       <div className='image-container'>
         <img src={image} alt='Avatar' />
       </div>
