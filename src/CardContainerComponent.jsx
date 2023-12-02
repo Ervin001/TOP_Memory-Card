@@ -22,6 +22,7 @@ export default function CardContainerComponent({
   addBestScore,
   playing,
   endGame,
+  resetPoint,
 }) {
   //shuffle at the start of the game
   shuffle(initialCardData);
@@ -51,9 +52,9 @@ export default function CardContainerComponent({
 
   const handleClick = (e) => {
     // Check if game is playable
-    const imgID = e.target.src.split('/').pop();
     if (playing) {
       // get only the id
+      const imgID = e.target.src.split('/').pop();
 
       if (!(imgID in imgUrlObj)) {
         // Shuffle the cards
@@ -64,18 +65,16 @@ export default function CardContainerComponent({
         // Add point
         addPoint();
       } else {
-        console.log('Game Over');
-
         // Add current Score to best score;
         addBestScore();
+        resetPoint();
+        endGame();
       }
-    } else {
-      endGame();
     }
   };
 
   return (
-    <div className='container card-container grid'>
+    <div className={`container card-container grid`}>
       {randomCards.map((card) => {
         return (
           <Card

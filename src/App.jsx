@@ -1,5 +1,6 @@
 import CardContainerComponent from './CardContainerComponent';
 import InfoComponent from './InfoComponent';
+
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
     setCurrentScore((prevScore) => prevScore + 1);
   };
 
+  const resetPoint = () => {
+    setCurrentScore(0);
+  };
+
   const addBestScore = () => {
     setBestScore(currentScore);
   };
@@ -22,15 +27,34 @@ function App() {
     setPlaying(false);
   };
 
+  // useEffect(() => {
+  //   console.log(playing);
+  // }, [playing]);
+
   return (
     <>
-      <InfoComponent currentScore={currentScore} bestScore={bestScore} />
+      <InfoComponent
+        currentScore={currentScore}
+        bestScore={bestScore}
+        playing={playing}
+        first={true}
+      />
+
       <CardContainerComponent
         addPoint={addPoint}
+        resetPoint={resetPoint}
         addBestScore={addBestScore}
         playing={playing}
         endGame={endGame}
       />
+      {!playing && (
+        <InfoComponent
+          currentScore={currentScore}
+          bestScore={bestScore}
+          playing={playing}
+          first={false}
+        />
+      )}
     </>
   );
 }

@@ -21,7 +21,7 @@ export default function Card({ name, type, urlID, onClick }) {
   }, []);
 
   return (
-    <div className='card card-box' data-id={{ urlID }} onClick={onClick}>
+    <div className={`card card-box`} data-id={{ urlID }} onClick={onClick}>
       <div className='image-container'>
         <img src={image} alt='Avatar' />
       </div>
