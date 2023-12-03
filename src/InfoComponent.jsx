@@ -3,6 +3,7 @@ export default function InfoComponent({
   bestScore,
   playing,
   first,
+  resetGame,
 }) {
   const content = first ? (
     <>
@@ -22,7 +23,9 @@ export default function InfoComponent({
       </div>
 
       <div className={`score game-over-score`}>Best Score: {bestScore} </div>
-      <button className='btn'>Start Over</button>
+      <button className='btn button-54' onClick={resetGame}>
+        Start Over
+      </button>
     </>
   );
 

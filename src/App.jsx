@@ -20,6 +20,7 @@ function App() {
   };
 
   const addBestScore = () => {
+    if (currentScore < bestScore) return;
     setBestScore(currentScore);
   };
 
@@ -27,9 +28,10 @@ function App() {
     setPlaying(false);
   };
 
-  // useEffect(() => {
-  //   console.log(playing);
-  // }, [playing]);
+  const resetGame = () => {
+    setPlaying(true);
+    resetPoint();
+  };
 
   return (
     <>
@@ -42,7 +44,6 @@ function App() {
 
       <CardContainerComponent
         addPoint={addPoint}
-        resetPoint={resetPoint}
         addBestScore={addBestScore}
         playing={playing}
         endGame={endGame}
@@ -53,6 +54,7 @@ function App() {
           bestScore={bestScore}
           playing={playing}
           first={false}
+          resetGame={resetGame}
         />
       )}
     </>

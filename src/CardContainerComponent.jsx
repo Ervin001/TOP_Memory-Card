@@ -15,8 +15,6 @@ const initialCardData = [
   { type: 'svg', name: 'Sam', id: uuidv4(), urlID: 8 },
 ];
 
-const imgUrlObj = {};
-
 export default function CardContainerComponent({
   addPoint,
   addBestScore,
@@ -24,6 +22,17 @@ export default function CardContainerComponent({
   endGame,
   resetPoint,
 }) {
+  // Game object
+  const [imgUrlObj, setImgUrlObj] = useState({});
+
+  // For when the game is reset
+  useEffect(() => {
+    // Check if game is over
+    if (!playing) {
+      setImgUrlObj({});
+    }
+  }, [playing]);
+
   //shuffle at the start of the game
   shuffle(initialCardData);
 
@@ -65,10 +74,10 @@ export default function CardContainerComponent({
         // Add point
         addPoint();
       } else {
-        // Add current Score to best score;
+        // Add current Score to best score
         addBestScore();
-        resetPoint();
         endGame();
+        resetPoint();
       }
     }
   };
